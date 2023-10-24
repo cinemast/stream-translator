@@ -46,3 +46,9 @@ See [streamlink plugins](https://streamlink.github.io/plugins.html) for info on 
 faster-whisper provides significant performance upgrades over the original OpenAI implementation (~ 4x faster, ~ 2x less memory).
 To use it, follow the instructions [here](https://github.com/guillaumekln/faster-whisper#installation) to install faster-whisper and convert your models to CTranslate2 format.
 Then you can run the CLI with --use_faster_whisper and set --faster_whisper_model_path to the location of your converted model.
+
+
+
+ ffmpeg -f dshow -i audio="Microphone (USB PnP Audio Device)" -c:a "libopus" -b:a 32k -ac 1 -f mpegts "udp://127.0.0.1:1234"
+
+ https://github.com/collabora/WhisperLive

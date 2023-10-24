@@ -1,6 +1,7 @@
 import argparse
 import sys
 import signal
+import time
 from datetime import datetime
 
 import ffmpeg
@@ -166,12 +167,17 @@ def main(url, model="small", language=None, interval=5, history_buffer_size=0, p
                 new_prefix = decoded_text
     
             else:
+
+                t = time.process_time()
                 result = model.transcribe(np.concatenate(audio_buffer.get_all()),
                                           prefix="".join(previous_text.get_all()),
                                           language=language,
-                                          without_timestamps=True,
+                                          without_timestamps=False,
                                           **decode_options)
-                
+
+                elapsed_time = time.process_time() - t
+                print("elapsed time: ", elapsed_time)
+
                 decoded_language = "" if language else "(" + result.get("language") + ")"
                 decoded_text = result.get("text")
                 new_prefix = ""
